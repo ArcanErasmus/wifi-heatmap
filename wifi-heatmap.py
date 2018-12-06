@@ -14,7 +14,6 @@ layout = imread('input/Layout.png')
 a = tb.tabarray(SVfile='input/mapping.csv')
 
 s_beacons = ['2e:20', 'f6:70', '5b:30', '74:c0', 'f5:90', '16:a0']
-g_beacons = ['14:a1', 'f6:71', '5b:31', '74:c1', 'f5:91', '16:a1']
 
 grid_width = 797
 grid_height = 530
@@ -81,7 +80,7 @@ def grid_plots():
                     function='linear')
 
             z = rbf(gx, gy)
-            z = z.reshape((num_y, num_x))
+            z = z.reshape((int(num_y), int(num_x)))
 
             # Render the interpolated data to the plot
             image = image_grid[i].imshow(z, vmin=-85, vmax=-25, extent=(0,
@@ -119,7 +118,7 @@ def max_plot():
         rbf = Rbf(a['Drawing X'], a['Drawing Y'], max_rssi, function='linear')
 
         z = rbf(gx, gy)
-        z = z.reshape((num_y, num_x))
+        z = z.reshape((int(num_y), int(num_x)))
 
         # Render the interpolated data to the plot
         image = pp.imshow(z, vmin=-85, vmax=-25, extent=(0,
